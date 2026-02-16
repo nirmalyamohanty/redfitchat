@@ -127,14 +127,21 @@ export default function GlobalChat() {
   };
 
   const handleUserClick = async (targetUser) => {
-    if (!targetUser || !targetUser._id) {
-      console.error("Invalid user data:", targetUser);
+    // Handle both populated User object AND raw ID string
+    const targetUserId = targetUser?._id || targetUser;
+
+    if (!targetUserId || typeof targetUserId !== 'string') {
+      console.error("Invalid user data for click:", targetUser);
       return;
     }
-    if (targetUser._id === user?._id) return;
+
+    if (user?._id && targetUserId === user._id) return; // Don't chat with self
+
+    console.log("Starting chat with:", targetUserId);
 
     try {
-      const { data } = await chatsApi.withUser(targetUser._id);
+      const { data } = await chatsApi.withUser(targetUserId);
+      console.log("Chat created/found:", data);
       navigate(`/chat/${data._id}`);
     } catch (err) {
       console.error("Failed to start chat:", err);

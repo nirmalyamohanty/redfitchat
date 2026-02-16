@@ -43,11 +43,14 @@ export default function MessageBubble({ msg, onReply, onUserClick, isOwn }) {
         `}>
           {!isOwn && (
             <div
-              onClick={() => onUserClick && onUserClick(msg.senderId)}
-              className="text-xs font-bold text-primary mb-1 cursor-pointer hover:underline"
+              onClick={(e) => {
+                e.stopPropagation(); // Prevent bubbling just in case
+                if (onUserClick) onUserClick(msg.senderId);
+              }}
+              className="text-xs font-bold text-primary mb-1 cursor-pointer hover:underline hover:text-primary-hover transition-colors inline-block"
               title="Click to DM"
             >
-              {username}
+              @{username}
             </div>
           )}
 
