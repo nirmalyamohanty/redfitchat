@@ -28,6 +28,8 @@ export default function Login() {
   useEffect(() => {
     if (!GOOGLE_CLIENT_ID) {
       console.error('Missing Google Client ID');
+      // Set a visible error/warning state if you have one, or alert for now
+      // setGuestError('System Error: Google Client ID is missing in Vercel settings.');
       return;
     }
     if (loading) return;
@@ -164,6 +166,12 @@ export default function Login() {
           </div>
         )}
       </div>
+
+      {!GOOGLE_CLIENT_ID && (
+        <div className="absolute top-4 left-0 right-0 mx-auto w-max px-4 py-2 bg-yellow-500/20 border border-yellow-500/50 rounded-full text-yellow-200 text-xs font-mono">
+          ⚠️ Setup Required: Add VITE_GOOGLE_CLIENT_ID to Vercel
+        </div>
+      )}
 
       <div className="absolute bottom-6 text-gray-600 text-xs text-center">
         <p>&copy; 2026 RedFit Chat Inc. All rights reserved.</p>
