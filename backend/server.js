@@ -26,6 +26,7 @@ import aiRoutes from './routes/ai.js';
 import translateRoutes from './routes/translate.js';
 import { setupSocket } from './socket/index.js';
 import { errorHandler } from './middleware/errorHandler.js';
+import './config/passport.js'; // Setup Passport Strategy
 
 const app = express();
 const httpServer = createServer(app);
