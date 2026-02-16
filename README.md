@@ -1,157 +1,103 @@
 <div align="center">
 
-# 🔒 Anonymous Chat App  
-### Real-Time Privacy-First Messaging Platform
+<h1 style="
+  font-size:48px;
+  background: linear-gradient(90deg,#ff0057,#00f7ff,#ff00e6);
+  -webkit-background-clip:text;
+  color:transparent;
+  animation: glow 3s ease-in-out infinite alternate;
+">
+🔒 RedFitChat
+</h1>
 
-<img src="https://img.shields.io/badge/React-Vite-blue?style=for-the-badge" />
-<img src="https://img.shields.io/badge/Node.js-Express-green?style=for-the-badge" />
-<img src="https://img.shields.io/badge/MongoDB-Atlas-4EA94B?style=for-the-badge" />
-<img src="https://img.shields.io/badge/Socket.io-Realtime-black?style=for-the-badge" />
-<img src="https://img.shields.io/badge/Auth-Google%20OAuth-red?style=for-the-badge" />
-<img src="https://img.shields.io/badge/License-MIT-brightgreen?style=for-the-badge" />
+<h3 style="color:#00f7ff;">Real-Time Anonymous Chat Platform</h3>
 
-A full-stack **anonymous real-time chat application** with global chat,  
-private messaging, threaded replies, media sharing, and moderation tools —  
-built using modern scalable architecture and deployable on free-tier services.
+<a href="https://redfitchat.vercel.app/" target="_blank">
+  <img src="https://img.shields.io/badge/🚀%20Live%20Demo-FF0057?style=for-the-badge&logo=vercel&logoColor=white"/>
+</a>
+
+<br/><br/>
+
+<img src="https://img.shields.io/badge/React-Vite-00f7ff?style=for-the-badge&logo=react&logoColor=black"/>
+<img src="https://img.shields.io/badge/Node.js-Express-39ff14?style=for-the-badge&logo=node.js&logoColor=black"/>
+<img src="https://img.shields.io/badge/MongoDB-Atlas-00ff9c?style=for-the-badge&logo=mongodb&logoColor=black"/>
+<img src="https://img.shields.io/badge/Socket.io-Realtime-ff00e6?style=for-the-badge"/>
+<img src="https://img.shields.io/badge/Auth-Google%20OAuth-ff0057?style=for-the-badge&logo=google&logoColor=white"/>
 
 </div>
 
----
+<style>
+@keyframes glow {
+  0% { text-shadow: 0 0 10px #ff0057, 0 0 20px #ff0057, 0 0 30px #ff00e6; }
+  100% { text-shadow: 0 0 20px #00f7ff, 0 0 30px #00f7ff, 0 0 40px #39ff14; }
+}
 
-## ✨ Features
+.neon-box {
+  border: 1px solid #00f7ff;
+  padding: 16px;
+  margin: 20px auto;
+  width: 85%;
+  border-radius: 12px;
+  box-shadow: 0 0 15px #00f7ff, 0 0 30px #ff00e6 inset;
+  animation: floatBox 4s ease-in-out infinite;
+}
 
-- 🔐 Google OAuth only (no email/password storage)  
-- 🎲 Auto-generated anonymous usernames (`anon_XXXXXX`)  
-- 🌍 Global public chat (real-time)  
-- 💬 1-to-1 private messaging  
-- 🧵 Threaded replies (multi-level conversations)  
-- 🖼️ Media support  
-  - Images  
-  - Short videos (≤10s)  
-  - Files (≤500MB*)  
-- 🌐 Message translation toggle (LibreTranslate)  
-- 👤 Anonymous profile (avatar + bio)  
-- 🛡️ Moderation system  
-  - Rate limiting  
-  - Profanity filter  
-  - Report & block users  
-- ⏳ Auto-delete old messages (TTL)  
-- 🌙 Modern dark UI (Discord/WhatsApp inspired)  
+@keyframes floatBox {
+  0%,100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+</style>
 
-\*Depends on free-tier storage limits.
+<div class="neon-box">
 
----
+<h2 style="color:#ff00e6;">🌐 What is RedFitChat?</h2>
 
-## 🧱 Tech Stack
+<p style="color:#00f7ff;">
+RedFitChat is a privacy-first <b>anonymous real-time chat platform</b> where users sign in with Google OAuth and receive a random <code>anon_XXXXXX</code> identity.  
+It supports global chat, private messaging, threaded replies, media sharing, translation, and built-in moderation — all deployed on free-tier infrastructure.
+</p>
 
-| Layer | Technology |
-|-------|------------|
-Frontend | React + Vite + Tailwind CSS  
-Backend | Node.js + Express.js  
-Database | MongoDB Atlas  
-Realtime | Socket.io  
-Auth | Google OAuth  
-Storage | Cloudinary  
-Deployment | Vercel + Render  
+</div>
 
----
+<div class="neon-box">
 
-## 🧠 Architecture
+<h2 style="color:#39ff14;">🚀 Core Features</h2>
 
-Client (React) ⇄ REST API + WebSockets ⇄ Server (Express + Socket.io) ⇄ MongoDB  
-Media uploads handled via **Cloudinary signed URLs**.
+<ul style="color:#00f7ff; text-align:left;">
+<li>🔐 Anonymous Google OAuth authentication</li>
+<li>🌍 Global real-time public chat</li>
+<li>💬 1-to-1 private direct messages</li>
+<li>🧵 Multi-level threaded conversations</li>
+<li>🖼️ Media support (images, short videos ≤10s, files)</li>
+<li>🌐 Message translation toggle</li>
+<li>👤 Avatar + bio (no personal data)</li>
+<li>🛡️ Rate limit, profanity filter, report & block</li>
+<li>⏳ Auto-delete old messages (MongoDB TTL)</li>
+<li>🌙 Dark neon UI inspired by Discord</li>
+</ul>
 
-Key backend responsibilities:
+</div>
 
-- JWT session handling  
-- OAuth verification  
-- Socket room management (global, DM, threads)  
-- Message persistence + TTL cleanup  
-- Moderation middleware  
+<div class="neon-box">
 
----
+<h2 style="color:#ff0057;">⚙️ Tech Stack</h2>
 
-## 🚀 Getting Started
+<p style="color:#00f7ff;">
+React + Vite + Tailwind • Node.js + Express • MongoDB Atlas • Socket.io • Cloudinary • Vercel • Render
+</p>
 
-### 1️⃣ Clone the repo
+</div>
 
-```bash
-git clone https://github.com/your-username/anonymous-chat-app.git
-cd anonymous-chat-app
-```
+<div class="neon-box">
 
-### 2️⃣ Backend setup
+<h2 style="color:#00ff9c;">🎯 Why This Project?</h2>
 
-```bash
-cd backend
-npm install
-cp .env.example .env
-npm run dev
-```
+<p style="color:#00f7ff;">
+Built to learn real-time architecture, anonymous identity systems, OAuth-only auth, threaded chat schemas, moderation pipelines, and free-tier full-stack deployment.
+</p>
 
-### 3️⃣ Frontend setup
+</div>
 
-```bash
-cd frontend
-npm install
-cp .env.example .env.local
-npm run dev
-```
-
----
-
-## 🔑 Environment Variables
-
-**Backend (.env)**
-
-```env
-PORT=5000
-MONGODB_URI=your_mongodb_uri
-GOOGLE_CLIENT_ID=your_google_client_id
-GOOGLE_CLIENT_SECRET=your_google_secret
-CLOUDINARY_CLOUD_NAME=your_cloud_name
-CLOUDINARY_API_KEY=your_api_key
-CLOUDINARY_API_SECRET=your_api_secret
-JWT_SECRET=your_jwt_secret
-CORS_ORIGIN=http://localhost:5173
-```
-
-**Frontend (.env.local)**
-
-```env
-VITE_API_URL=http://localhost:5000
-VITE_GOOGLE_CLIENT_ID=your_google_client_id
-```
-
----
-
-## 🎯 Learning Goals
-
-- Real-time chat architecture  
-- OAuth-only authentication  
-- Anonymous identity mapping  
-- Threaded message schema design  
-- Moderation pipelines  
-- Free-tier full-stack deployment  
-
----
-
-## ⚠️ Disclaimer
-
-This project is for **educational purposes**.  
-Production use requires stronger abuse detection,  
-WebSocket scaling, and advanced storage strategies.
-
----
-
-## 🛡️ License
-
-MIT — free to use and modify.
-
----
-
-<div align="center">
-
-Built with ❤️ by Nirmalya
-
+<div align="center" style="margin-top:30px; color:#ff00e6;">
+Made with ⚡ by Nirmalya
 </div>
