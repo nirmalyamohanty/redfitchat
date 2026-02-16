@@ -15,13 +15,33 @@ export function SocketProvider({ children }) {
       setSocket(null);
       return;
     }
+
+    const socketUrl = import.meta.env.VITE_API_URL;
+    if (!socketUrl) {
+      console.error("Socket URL is missing! Check VITE_API_URL.");
+      return;
+    }
+
     const token = localStorage.getItem('token');
-    const s = io(SOCKET_URL, {
+    const s = io(socketUrl, {
       auth: { token },
-      transports: ['websocket', 'polling']
+      transports: ['websocket'], // Force WebSocket to avoid Render sticky session issues
+      withCredentials: true,
+      autoConnect: true,
+      reconnection: true,
+      reconnectionAttempts: 5,
+      reconnectionDelay: 1000
     });
+
+    s.on('connect_error', (err) => {
+      console.error("Socket Connection Error:", err.message);
+    });
+
     setSocket(s);
-    return () => s.disconnect();
+
+    return () => {
+      if (s) s.disconnect();
+    };
   }, [user]);
 
   return (
