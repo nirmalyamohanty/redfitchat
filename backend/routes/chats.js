@@ -24,6 +24,11 @@ router.get('/', protect, async (req, res) => {
 
 router.post('/with/:userId', protect, async (req, res) => {
   const otherId = req.params.userId;
+
+  if (!mongoose.Types.ObjectId.isValid(otherId)) {
+    return res.status(400).json({ message: 'Invalid User ID' });
+  }
+
   if (otherId === req.user._id.toString()) return res.status(400).json({ message: 'Cannot chat with yourself' });
   const other = await User.findById(otherId);
   if (!other) return res.status(404).json({ message: 'User not found' });

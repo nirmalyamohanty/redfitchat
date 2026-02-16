@@ -149,14 +149,7 @@ router.post('/guest', authLimit, async (req, res) => {
       });
     } catch (createErr) {
       console.error('Guest creation error:', createErr);
-      // Fallback to purely JWT-based guest if DB creation fails (e.g. constraints)
-      // This allows chat to work even if DB is finicky, though persistence will be limited
-      const token = jwt.sign(
-        { userId: guestId, username, isGuest: true },
-        process.env.JWT_SECRET,
-        { expiresIn: '24h' }
-      );
-      res.json({ token, user: { id: guestId, username, profilePic: '', bio: '', isGuest: true } });
+      return res.status(500).json({ message: 'Guest creation failed. Please try again.' });
     }
   } catch (err) {
     console.error('Guest route error:', err);
