@@ -14,12 +14,22 @@ export default function GlobalChat() {
   const [uploading, setUploading] = useState(false);
   const listRef = useRef(null);
 
-  useEffect(() => {
-    messagesApi.global().then(({ data }) => setMsgs(data)).catch(console.error);
-  }, []);
+  // Initial fetch moved to socket effect to handle reconnections
+  // useEffect(() => {
+  //   messagesApi.global().then(({ data }) => setMsgs(data)).catch(console.error);
+  // }, []);
 
   useEffect(() => {
     if (!socket) return;
+
+    const fetchMessages = () => {
+      messagesApi.global().then(({ data }) => setMsgs(data)).catch(console.error);
+    };
+
+    // Initial fetch
+    fetchMessages();
+
+    socket.on('connect', fetchMessages); // Re-fetch on reconnection
     socket.emit('global:join');
     socket.on('global:message', (msg) => {
       setMsgs((prev) => {
