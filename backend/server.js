@@ -34,7 +34,7 @@ const corsOrigins = (origin, callback) => {
   const allowedOrigins = process.env.CORS_ORIGIN ? process.env.CORS_ORIGIN.split(',').map(o => o.trim()) : [];
   const isLocalhost = origin && (origin.startsWith('http://localhost') || origin.startsWith('http://127.0.0.1'));
 
-  if (!origin || isLocalhost || allowedOrigins.includes(origin)) {
+  if (!origin || isLocalhost || allowedOrigins.includes('*') || allowedOrigins.includes(origin)) {
     callback(null, true);
   } else {
     console.log('Blocked CORS origin:', origin);

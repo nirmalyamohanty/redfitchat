@@ -19,7 +19,7 @@ Full-stack anonymous real-time chat application with global chat, private messag
 ```
 tosn/
 ├── backend/          # Node.js + Express API
-│   ├── models/       # MongoDB schemas
+│   ├── models/       # MongoDB schemasp
 │   ├── routes/       # API routes
 │   ├── middleware/   # Auth, rate limit, etc.
 │   ├── utils/        # Helpers
