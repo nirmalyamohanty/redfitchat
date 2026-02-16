@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { translate as translateApi } from '../api';
 import { messages as messagesApi } from '../api';
 
-export default function MessageBubble({ msg, onReply, isOwn }) {
+export default function MessageBubble({ msg, onReply, onUserClick, isOwn }) {
   const [translated, setTranslated] = useState(null);
   const [loading, setLoading] = useState(false);
   const [showTranslated, setShowTranslated] = useState(false);
@@ -41,7 +41,15 @@ export default function MessageBubble({ msg, onReply, isOwn }) {
             ? 'bg-gradient-to-br from-primary to-primary-hover text-white rounded-tr-sm'
             : 'glass-card text-gray-100 rounded-tl-sm'}
         `}>
-          {!isOwn && <div className="text-xs font-bold text-primary mb-1">{username}</div>}
+          {!isOwn && (
+            <div
+              onClick={() => onUserClick && onUserClick(msg.senderId)}
+              className="text-xs font-bold text-primary mb-1 cursor-pointer hover:underline"
+              title="Click to DM"
+            >
+              {username}
+            </div>
+          )}
 
           {(msg.replyToMessageId || msg.replyContext) && (
             <div className={`text-xs border-l-2 pl-2 mb-2 ${isOwn ? 'border-white/30 text-white/70' : 'border-primary/50 text-gray-400'}`}>
