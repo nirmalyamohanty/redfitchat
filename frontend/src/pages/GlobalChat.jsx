@@ -206,6 +206,5 @@ export default function GlobalChat() {
         </div>
       </div>
     </div>
-    </div >
   );
 }
