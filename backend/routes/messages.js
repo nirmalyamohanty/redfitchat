@@ -62,24 +62,9 @@ router.post('/global', protect, messageLimit, async (req, res) => {
       originalSender: replyTo.username
     } : null;
 
-    if (req.user.isGuest) {
-      console.log('Processing guest message...');
-      const msg = {
-        _id: 'guest_' + Date.now() + '_' + Math.random().toString(36).slice(2),
-        chatType: 'global',
-        chatId: GLOBAL_CHAT_ID,
-        senderId: { _id: req.user._id, username: req.user.username, profilePic: req.user.profilePic || '' },
-        text: cleanText,
-        mediaUrl: mediaUrl || '',
-        mediaType: mediaType || '',
-        replyToMessageId: null, // Guests don't use DB refs
-        replyContext,
-        createdAt: new Date()
-      };
-      const socketIo = req.app.get('io');
-      if (socketIo) socketIo.to('global').emit('global:message', msg);
-      return res.status(201).json(msg);
-    }
+    // ALLOW GUESTS TO SAVE TO DB
+    // Previously, guest messages were only emitted via socket and not saved.
+    // Now we save them so they persist on reload.
 
     // Validate replyToMessageId if available (for backward compatibility / rich linking)
     let validReplyId = null;
